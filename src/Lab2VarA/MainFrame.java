@@ -2,7 +2,7 @@ package Lab2VarA;
 
 import javax.swing.*;
 
-public class MainClass {
+public class MainFrame {
 
     public static void main(String[] args)
     {
@@ -10,5 +10,4 @@ public class MainClass {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-
 }
