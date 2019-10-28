@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 
 public class MainFrame extends JFrame {
-
+    int w = 0;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 420;
 
