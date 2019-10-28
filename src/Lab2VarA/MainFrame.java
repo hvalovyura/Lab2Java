@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.Math.*;
+
 
 public class MainFrame extends JFrame {
 
@@ -23,14 +25,14 @@ public class MainFrame extends JFrame {
 
     private int formulaID = 1;
 
-    public Double calculate1(Double x, Double y)
+    public Double calculate1(Double x, Double y, Double z)
     {
-        return x * x + y * y;
+        return (pow(log(pow((1 + z), 2)) + cos(PI * y * y *y), 1 / 4)) / pow(cos(pow(E, x)) + sqrt(1 / x) + pow(E, x * x), sin(x));
     }
 
-    public Double calculate2(Double x, Double y)
+    public Double calculate2(Double x, Double y, Double z)
     {
-        return x * x + 1 / y;
+        return pow(sin(pow(z, y)), 2) / sqrt(1 + x*x*x);
     }
 
     private void addRadioButton(String buttonName, final int formulaID)
@@ -109,8 +111,8 @@ public class MainFrame extends JFrame {
                     Double y = Double.parseDouble(textFieldY.getText());
                     Double z = Double.parseDouble(textFieldZ.getText());
                     Double result;
-                    if (formulaID == 1) result = calculate1(x, y);
-                    else result = calculate2(x, y);
+                    if (formulaID == 1) result = calculate1(x, y, z);
+                    else result = calculate2(x, y, z);
                     labelForResult.setText(result.toString());
                 }
                 catch (NumberFormatException ex)
