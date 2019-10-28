@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
 
     private JTextField textFieldX;
     private JTextField textFieldY;
+    private JTextField textFieldZ;
 
     private JTextField textFieldResult;
 
@@ -62,11 +63,14 @@ public class MainFrame extends JFrame {
         hboxFormulaType.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 
         JLabel labelForX = new JLabel("X:");
-        textFieldX = new JTextField("0", 10);
+        textFieldX = new JTextField("0", 5);
         textFieldX.setMaximumSize(textFieldX.getPreferredSize());
         JLabel labelForY = new JLabel("Y:");
-        textFieldY = new JTextField("0", 10);
+        textFieldY = new JTextField("0", 5);
         textFieldY.setMaximumSize(textFieldY.getPreferredSize());
+        JLabel labelForZ = new JLabel("Z:");
+        textFieldZ = new JTextField("0", 5);
+        textFieldZ.setMaximumSize(textFieldZ.getPreferredSize());
 
         Box hboxVariables = Box.createHorizontalBox();
         hboxVariables.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -74,10 +78,14 @@ public class MainFrame extends JFrame {
         hboxVariables.add(labelForX);
         hboxVariables.add(Box.createHorizontalStrut(10));
         hboxVariables.add(textFieldX);
-        hboxVariables.add(Box.createHorizontalStrut(100));
+        hboxVariables.add(Box.createHorizontalStrut(30));
         hboxVariables.add(labelForY);
         hboxVariables.add(Box.createHorizontalStrut(10));
         hboxVariables.add(textFieldY);
+        hboxVariables.add(Box.createHorizontalStrut(30));
+        hboxVariables.add(labelForZ);
+        hboxVariables.add(Box.createHorizontalStrut(10));
+        hboxVariables.add(textFieldZ);
         hboxVariables.add(Box.createHorizontalGlue());
 
         JLabel labelForResult = new JLabel("Результат: ");
@@ -99,6 +107,7 @@ public class MainFrame extends JFrame {
                 {
                     Double x = Double.parseDouble(textFieldX.getText());
                     Double y = Double.parseDouble(textFieldY.getText());
+                    Double z = Double.parseDouble(textFieldZ.getText());
                     Double result;
                     if (formulaID == 1) result = calculate1(x, y);
                     else result = calculate2(x, y);
@@ -117,6 +126,7 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 textFieldX.setText("0");
                 textFieldY.setText("0");
+                textFieldZ.setText("0");
                 textFieldResult.setText("0");
             }
         });
