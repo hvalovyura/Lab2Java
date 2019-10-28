@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 
     public Double calculate1(Double x, Double y, Double z)
     {
-        return (pow(log(pow((1 + z), 2)) + cos(PI * y * y *y), 1.0 / 4.0)) / pow(cos(pow(E, x)) + sqrt(1 / x) + pow(E, x * x), sin(x));
+        return  (pow(log(pow((1 + z), 2)) + cos(PI * y * y *y), 1.0 / 4.0)) / pow(cos(pow(E, x)) + sqrt(1 / x) + pow(E, x * x), sin(x));
     }
 
     public Double calculate2(Double x, Double y, Double z)
@@ -115,8 +115,12 @@ public class MainFrame extends JFrame {
                     Double result;
                     if (formulaID == 1) result = calculate1(x, y, z);
                     else result = calculate2(x, y, z);
-                    labelForResult.setText(result.toString());
+                    textFieldResult.setText(result.toString());
                 }
+                /*catch (ArithmeticException ex)
+                {
+                    JOptionPane.showMessageDialog(MainFrame.this, "Невозможно провести вычисления", "Ошибочные данные", JOptionPane.WARNING_MESSAGE);
+                }*/
                 catch (NumberFormatException ex)
                 {
                     JOptionPane.showMessageDialog(MainFrame.this, "Ошибка в формате числа с плавающей точкой", "Ошибочный формат числа", JOptionPane.WARNING_MESSAGE);
@@ -154,7 +158,7 @@ public class MainFrame extends JFrame {
                     Double z = Double.parseDouble(textFieldZ.getText());
                     if (formulaID == 1) sum += calculate1(x, y, z);
                     else sum += calculate2(x, y, z);
-                    labelForResult.setText(sum.toString());
+                    textFieldResult.setText(sum.toString());
                 }
                 catch (NumberFormatException ex)
                 {
@@ -168,7 +172,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sum = 0.0;
-                labelForResult.setText(sum.toString());
+                textFieldResult.setText(sum.toString());
             }
         });
 
