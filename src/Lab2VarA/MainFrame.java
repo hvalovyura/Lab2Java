@@ -13,6 +13,8 @@ public class MainFrame extends JFrame {
     private static final int WIDTH = 400;
     private static final int HEIGHT = 420;
 
+    private Double sum = 0.0;
+
     private JTextField textFieldX;
     private JTextField textFieldY;
     private JTextField textFieldZ;
@@ -27,7 +29,7 @@ public class MainFrame extends JFrame {
 
     public Double calculate1(Double x, Double y, Double z)
     {
-        return (pow(log(pow((1 + z), 2)) + cos(PI * y * y *y), 1 / 4)) / pow(cos(pow(E, x)) + sqrt(1 / x) + pow(E, x * x), sin(x));
+        return (pow(log(pow((1 + z), 2)) + cos(PI * y * y *y), 1.0 / 4.0)) / pow(cos(pow(E, x)) + sqrt(1 / x) + pow(E, x * x), sin(x));
     }
 
     public Double calculate2(Double x, Double y, Double z)
@@ -141,12 +143,50 @@ public class MainFrame extends JFrame {
         hboxButtons.add(Box.createHorizontalGlue());
         hboxButtons.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
+        JButton buttonMPlus = new JButton("M+");
+        buttonMPlus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try
+                {
+                    Double x = Double.parseDouble(textFieldX.getText());
+                    Double y = Double.parseDouble(textFieldY.getText());
+                    Double z = Double.parseDouble(textFieldZ.getText());
+                    if (formulaID == 1) sum += calculate1(x, y, z);
+                    else sum += calculate2(x, y, z);
+                    labelForResult.setText(sum.toString());
+                }
+                catch (NumberFormatException ex)
+                {
+                    JOptionPane.showMessageDialog(MainFrame.this, "Ошибка в формате числа с плавающей точкой", "Ошибочный формат числа", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
+        JButton buttonMC = new JButton("MC");
+        buttonMC.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sum = 0.0;
+                labelForResult.setText(sum.toString());
+            }
+        });
+
+        Box hboxButtons2 = Box.createHorizontalBox();
+        hboxButtons2.add(Box.createHorizontalGlue());
+        hboxButtons2.add(buttonMPlus);
+        hboxButtons2.add(Box.createHorizontalStrut(30));
+        hboxButtons2.add(buttonMC);
+        hboxButtons2.add(Box.createHorizontalGlue());
+        hboxButtons2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
         Box contentBox = Box.createVerticalBox();
         contentBox.add(Box.createVerticalGlue());
         contentBox.add(hboxFormulaType);
         contentBox.add(hboxVariables);
         contentBox.add(hboxResult);
         contentBox.add(hboxButtons);
+        contentBox.add(hboxButtons2);
         contentBox.add(Box.createVerticalGlue());
         getContentPane().add(contentBox, BorderLayout.CENTER);
 
